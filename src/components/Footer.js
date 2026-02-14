@@ -16,9 +16,9 @@ export default function Footer() {
                         Clean ingredients, bold flavors.
                     </p>
                     <div className="social-links">
-                        <a href="#" className="social-icon">📘</a>
-                        <a href="#" className="social-icon">📷</a>
-                        <a href="#" className="social-icon">🐦</a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Facebook">📘</a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Instagram">📷</a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Twitter">🐦</a>
                     </div>
                 </div>
 
@@ -28,19 +28,19 @@ export default function Footer() {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/products">Products</Link></li>
                         <li><Link to="/support">Support</Link></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><Link to="/support">About Us</Link></li>
+                        <li><Link to="/support">Blog</Link></li>
                     </ul>
                 </div>
 
                 <div className="footer-section">
                     <h3>Help & Support</h3>
                     <ul className="footer-links">
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Refund Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><Link to="/support">Shipping Policy</Link></li>
+                        <li><Link to="/support">Refund Policy</Link></li>
+                        <li><Link to="/support">Terms & Conditions</Link></li>
+                        <li><Link to="/support">Privacy Policy</Link></li>
+                        <li><Link to="/support">Contact Us</Link></li>
                     </ul>
                 </div>
 

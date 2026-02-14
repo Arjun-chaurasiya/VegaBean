@@ -98,7 +98,7 @@ export default function Home() {
                             <div className="blog-content">
                                 <h3 className="blog-title">{blog.title}</h3>
                                 <p className="blog-excerpt">{blog.excerpt}</p>
-                                <a href="#" className="blog-link">Read more →</a>
+                                <Link to="/support" className="blog-link">Read more →</Link>
                             </div>
                         </div>
                     ))}
@@ -121,7 +121,6 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-
         </div>
     );
 }
