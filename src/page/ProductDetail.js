@@ -40,8 +40,15 @@ export default function ProductDetail() {
             {/* PRODUCT MAIN */}
             <section className="product-main">
                 <div className="product-image-section">
-                    <div className="main-image">
-                        <div className="image-placeholder"></div>
+                    <div
+                        className="main-image"
+                        style={{
+                            backgroundImage: product.image ? `url(${product.image})` : 'none',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                        }}
+                    >
+                        {!product.image && <div className="image-placeholder"></div>}
                         {product.category === "Frozen" && (
                             <div className="badge frozen">❄️ Frozen</div>
                         )}
@@ -51,7 +58,7 @@ export default function ProductDetail() {
                 <div className="product-info-section">
                     <div className="product-category-tag">{product.category}</div>
                     <h1 className="product-title">{product.name}</h1>
-                    
+
                     <div className="product-price-section">
                         <span className="price">₹{product.price}</span>
                         <span className={`stock-status ${product.inStock ? 'in-stock' : 'out-of-stock'}`}>
@@ -73,14 +80,14 @@ export default function ProductDetail() {
                     <div className="quantity-section">
                         <label>Quantity:</label>
                         <div className="quantity-controls">
-                            <button 
+                            <button
                                 className="qty-btn"
                                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                             >
                                 -
                             </button>
                             <span className="qty-display">{quantity}</span>
-                            <button 
+                            <button
                                 className="qty-btn"
                                 onClick={() => setQuantity(quantity + 1)}
                             >
@@ -90,7 +97,7 @@ export default function ProductDetail() {
                     </div>
 
                     <div className="action-buttons">
-                        <button 
+                        <button
                             className="add-to-cart-btn primary"
                             onClick={handleAddToCart}
                             disabled={!product.inStock}
@@ -107,19 +114,19 @@ export default function ProductDetail() {
             {/* TABS SECTION */}
             <section className="tabs-section">
                 <div className="tabs-header">
-                    <button 
+                    <button
                         className={`tab-btn ${activeTab === 'description' ? 'active' : ''}`}
                         onClick={() => setActiveTab('description')}
                     >
                         Description
                     </button>
-                    <button 
+                    <button
                         className={`tab-btn ${activeTab === 'nutrition' ? 'active' : ''}`}
                         onClick={() => setActiveTab('nutrition')}
                     >
                         Nutrition
                     </button>
-                    <button 
+                    <button
                         className={`tab-btn ${activeTab === 'ingredients' ? 'active' : ''}`}
                         onClick={() => setActiveTab('ingredients')}
                     >
@@ -141,26 +148,26 @@ export default function ProductDetail() {
                             <h3>Nutrition Facts (per 100g)</h3>
                             <table className="nutrition-table">
                                 <tbody>
-                                    <tr>
-                                        <td>Calories</td>
-                                        <td>{product.nutritionPer100g.calories} kcal</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Protein</td>
-                                        <td>{product.nutritionPer100g.protein}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Carbohydrates</td>
-                                        <td>{product.nutritionPer100g.carbs}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fat</td>
-                                        <td>{product.nutritionPer100g.fat}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fiber</td>
-                                        <td>{product.nutritionPer100g.fiber}</td>
-                                    </tr>
+                                <tr>
+                                    <td>Calories</td>
+                                    <td>{product.nutritionPer100g.calories} kcal</td>
+                                </tr>
+                                <tr>
+                                    <td>Protein</td>
+                                    <td>{product.nutritionPer100g.protein}</td>
+                                </tr>
+                                <tr>
+                                    <td>Carbohydrates</td>
+                                    <td>{product.nutritionPer100g.carbs}</td>
+                                </tr>
+                                <tr>
+                                    <td>Fat</td>
+                                    <td>{product.nutritionPer100g.fat}</td>
+                                </tr>
+                                <tr>
+                                    <td>Fiber</td>
+                                    <td>{product.nutritionPer100g.fiber}</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -185,7 +192,14 @@ export default function ProductDetail() {
                     <div className="related-grid">
                         {relatedProducts.map(rp => (
                             <Link to={`/products/${rp.id}`} key={rp.id} className="related-card">
-                                <div className="related-image"></div>
+                                <div
+                                    className="related-image"
+                                    style={{
+                                        backgroundImage: rp.image ? `url(${rp.image})` : 'none',
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center'
+                                    }}
+                                ></div>
                                 <h3>{rp.name}</h3>
                                 <p className="related-price">₹{rp.price}</p>
                             </Link>

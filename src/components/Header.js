@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.jpeg";
 import "./Header.css";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
 
     return (
         <>
@@ -20,7 +22,7 @@ export default function Header() {
 
             <header className="header">
                 <Link to="/" className="logo">
-                    <span className="logo-icon">🫘</span>
+                    <img src={logo} alt="VegaBean Logo" className="logo-image" />
                     <span className="logo-text">VegaBean</span>
                 </Link>
 
@@ -56,7 +58,23 @@ export default function Header() {
                     </Link>
                 </nav>
 
+                {/* SEARCH BAR */}
+                <div className={`search-container ${searchOpen ? 'open' : ''}`}>
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        className="search-input"
+                    />
+                    <button className="search-btn-icon" onClick={() => setSearchOpen(!searchOpen)}>
+                        🔍
+                    </button>
+                </div>
+
                 <div className="header-actions">
+                    <button className="login-btn">
+                        Login / Signup
+                    </button>
+
                     <button className="cart-btn">
                         🛒
                         <span className="cart-badge">0</span>

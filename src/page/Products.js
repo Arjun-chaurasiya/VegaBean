@@ -8,8 +8,8 @@ export default function Products() {
 
     const categories = ["All", "Roasted", "Frozen"];
 
-    const filteredProducts = filter === "All" 
-        ? productsData 
+    const filteredProducts = filter === "All"
+        ? productsData
         : productsData.filter(p => p.category === filter);
 
     return (
@@ -44,7 +44,14 @@ export default function Products() {
                             className="product-card"
                             style={{ animationDelay: `${i * 0.1}s` }}
                         >
-                            <div className="product-image">
+                            <div
+                                className="product-image"
+                                style={{
+                                    backgroundImage: product.image ? `url(${product.image})` : 'none',
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center'
+                                }}
+                            >
                                 {product.category === "Frozen" && (
                                     <div className="product-badge frozen">❄️ Frozen</div>
                                 )}
@@ -72,7 +79,7 @@ export default function Products() {
 
                                 <div className="product-footer">
                                     <div className="product-price">₹{product.price}</div>
-                                    <button 
+                                    <button
                                         className="add-to-cart-btn"
                                         onClick={(e) => {
                                             e.preventDefault();
