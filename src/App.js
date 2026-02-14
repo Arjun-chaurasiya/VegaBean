@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./page/Home";
 import Products from "./page/Products";
 import Support from "./page/Support";
+import ProductDetail from "./page/ProductDetail";
 
 export default function App(){
     return(
@@ -14,6 +15,7 @@ export default function App(){
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/products" element={<Products/>}/>
+                <Route path="/products/:productId" element={<ProductDetail/>}/>
                 <Route path="/support" element={<Support/>}/>
             </Routes>
 

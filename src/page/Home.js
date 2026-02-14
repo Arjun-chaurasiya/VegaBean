@@ -1,130 +1,127 @@
 import React from "react";
-
-const products = [
-    "Peri Peri Masala",
-    "Mint Chatpata",
-    "Smoky BBQ",
-    "Himalayan Salted"
-];
+import { Link } from "react-router-dom";
+import { productsData } from "../data/productsData";
+import "./Home.css";
 
 export default function Home() {
+    const featuredProducts = productsData.slice(0, 4);
+
     return (
-        <div style={{ background:"#f6f6f0" }}>
+        <div className="home-container">
 
             {/* HERO SECTION */}
-            <section style={styles.hero}>
-                <div style={{maxWidth:"600px"}}>
-                    <h1 style={{fontSize:"52px", color:"white"}}>
+            <section className="hero">
+                <div className="hero-content fade-in-up">
+                    <h1 className="hero-title">
                         Your Cravings Just Got a Clean Makeover
                     </h1>
-                    <h3 style={{color:"white"}}>
-                        Chai’s New Best Friend. Gym Bro’s New Obsession.
+                    <h3 className="hero-subtitle">
+                        Chai's New Best Friend. Gym Bro's New Obsession.
                     </h3>
+                    <Link to="/products" className="hero-btn">
+                        Shop Now →
+                    </Link>
                 </div>
+                <div className="hero-blob"></div>
             </section>
 
             {/* INTRO */}
-            <section style={styles.section}>
-                <h2>Not just a snack — a vibe.</h2>
-                <p>
+            <section className="section intro-section">
+                <h2 className="section-title fade-in">Not just a snack — a vibe.</h2>
+                <p className="section-subtitle fade-in delay-1">
                     Where every pod is packed with protein, flavor and attitude.
                 </p>
+
+                <div className="stats-grid">
+                    <div className="stat-card slide-in delay-2">
+                        <div className="stat-number">15g</div>
+                        <div className="stat-label">Protein</div>
+                    </div>
+                    <div className="stat-card slide-in delay-3">
+                        <div className="stat-number">0%</div>
+                        <div className="stat-label">Guilt</div>
+                    </div>
+                    <div className="stat-card slide-in delay-4">
+                        <div className="stat-number">100%</div>
+                        <div className="stat-label">Plant Based</div>
+                    </div>
+                </div>
             </section>
 
             {/* PRODUCT PREVIEW */}
-            <section style={styles.section}>
-                <h2>Crunch With Us</h2>
+            <section className="section products-section">
+                <h2 className="section-title">Crunch With Us</h2>
 
-                <div style={styles.grid}>
-                    {products.map((p,i)=>(
-                        <div key={i} style={styles.card}>
-                            <div style={styles.image}></div>
-                            <h3>{p}</h3>
-                            <p>Gym bro approved 🔥</p>
-                            <button style={styles.btn}>ADD TO CART</button>
+                <div className="products-grid">
+                    {featuredProducts.map((product, i) => (
+                        <Link
+                            to={`/products/${product.id}`}
+                            key={product.id}
+                            className="product-card"
+                            style={{animationDelay: `${i * 0.1}s`}}
+                        >
+                            <div className="product-image">
+                                <div className="product-badge">New</div>
+                            </div>
+                            <h3 className="product-name">{product.name}</h3>
+                            <p className="product-tagline">Gym bro approved 🔥</p>
+                            <div className="product-footer">
+                                <span className="product-price">₹{product.price}</span>
+                                <button className="add-to-cart-btn">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+
+                <div className="view-all-container">
+                    <Link to="/products" className="view-all-btn">
+                        View All Products →
+                    </Link>
+                </div>
+            </section>
+
+            {/* BLOG SECTION */}
+            <section className="section blog-section">
+                <h2 className="section-title">Latest From Our Blog</h2>
+
+                <div className="blog-grid">
+                    {[
+                        { title: "Pre Workout Snacks", excerpt: "Fuel your fitness journey" },
+                        { title: "Edamame vs Makhana", excerpt: "Which is better for you?" },
+                        { title: "Plant Based Protein", excerpt: "Everything you need to know" },
+                        { title: "Weight Loss Benefits", excerpt: "Science-backed insights" }
+                    ].map((blog, i) => (
+                        <div key={i} className="blog-card" style={{animationDelay: `${i * 0.1}s`}}>
+                            <div className="blog-image"></div>
+                            <div className="blog-content">
+                                <h3 className="blog-title">{blog.title}</h3>
+                                <p className="blog-excerpt">{blog.excerpt}</p>
+                                <a href="#" className="blog-link">Read more →</a>
+                            </div>
                         </div>
                     ))}
                 </div>
             </section>
 
-            {/* BLOG SECTION (similar feeling) */}
-            <section style={styles.section}>
-                <h2>Latest From Our Blog</h2>
-
-                <div style={styles.grid}>
-                    {["Pre Workout Snacks",
-                        "Edamame vs Makhana",
-                        "Plant Based Protein",
-                        "Weight Loss Benefits"]
-                        .map((b,i)=>(
-                            <div key={i} style={styles.blogCard}>
-                                <div style={styles.blogImage}></div>
-                                <h3>{b}</h3>
-                                <p>Read more →</p>
-                            </div>
-                        ))}
-                </div>
-            </section>
-
             {/* ABOUT */}
-            <section style={styles.section}>
-                <h2>About VegaBean</h2>
-                <p>
-                    Two B.Pharm grads building the future of plant-powered snacking.
-                    Farm to freezer to front door.
-                </p>
+            <section className="section about-section">
+                <div className="about-content">
+                    <h2 className="section-title">About VegaBean</h2>
+                    <p className="about-text">
+                        Two B.Pharm grads building the future of plant-powered snacking.
+                        Farm to freezer to front door. We believe in clean ingredients,
+                        bold flavors, and snacks that fuel your hustle.
+                    </p>
+                    <div className="about-values">
+                        <div className="value-item">🌱 100% Plant Based</div>
+                        <div className="value-item">🧪 Lab Tested Quality</div>
+                        <div className="value-item">❄️ Cold Chain Maintained</div>
+                    </div>
+                </div>
             </section>
 
         </div>
     );
 }
-
-const styles = {
-    hero:{
-        height:"500px",
-        background:"linear-gradient(120deg,#14a93b,#1ed760)",
-        display:"flex",
-        alignItems:"center",
-        padding:"0 8%",
-    },
-    section:{
-        padding:"70px 8%",
-        background:"white",
-        marginTop:"10px"
-    },
-    grid:{
-        display:"grid",
-        gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",
-        gap:"20px",
-        marginTop:"20px"
-    },
-    card:{
-        background:"#fff",
-        padding:"18px",
-        borderRadius:"14px",
-        boxShadow:"0 4px 12px rgba(0,0,0,.1)"
-    },
-    image:{
-        height:"180px",
-        background:"#e8f5e9",
-        borderRadius:"10px"
-    },
-    btn:{
-        background:"#1b8f3a",
-        color:"white",
-        border:"none",
-        padding:"10px",
-        width:"100%",
-        borderRadius:"8px"
-    },
-    blogCard:{
-        background:"#f7f7f7",
-        padding:"15px",
-        borderRadius:"12px"
-    },
-    blogImage:{
-        height:"140px",
-        background:"#d9f2dd",
-        borderRadius:"8px"
-    }
-};

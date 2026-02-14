@@ -1,51 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./Header.css";
 
 export default function Header() {
+    const [menuOpen, setMenuOpen] = useState(false);
+
     return (
         <>
             {/* TOP STRIP */}
-            <div style={styles.topStrip}>
-                🌿 Plant Powered Protein • Free Shipping Above ₹1200 • Farm Fresh
+            <div className="top-strip">
+                <div className="strip-content">
+                    <span>🌿 Plant Powered Protein</span>
+                    <span className="separator">•</span>
+                    <span>Free Shipping Above ₹1200</span>
+                    <span className="separator">•</span>
+                    <span>Farm Fresh</span>
+                </div>
             </div>
 
-            <header style={styles.header}>
-                <h2 style={{ color: "#1b8f3a" }}>VegaBean</h2>
+            <header className="header">
+                <Link to="/" className="logo">
+                    <span className="logo-icon">🫘</span>
+                    <span className="logo-text">VegaBean</span>
+                </Link>
 
-                <nav style={styles.nav}>
-                    <Link to="/" style={styles.link}>Home</Link>
-                    <Link to="/products" style={styles.link}>Products</Link>
-                    <Link to="/support" style={styles.link}>Support</Link>
+                {/* DESKTOP NAV */}
+                <nav className="nav-desktop">
+                    <Link to="/" className="nav-link">Home</Link>
+                    <Link to="/products" className="nav-link">Products</Link>
+                    <Link to="/support" className="nav-link">Support</Link>
                 </nav>
 
-                <div>
-                    🛒
+                {/* MOBILE NAV */}
+                <nav className={`nav-mobile ${menuOpen ? 'open' : ''}`}>
+                    <Link
+                        to="/"
+                        className="nav-link"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Home
+                    </Link>
+                    <Link
+                        to="/products"
+                        className="nav-link"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Products
+                    </Link>
+                    <Link
+                        to="/support"
+                        className="nav-link"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Support
+                    </Link>
+                </nav>
+
+                <div className="header-actions">
+                    <button className="cart-btn">
+                        🛒
+                        <span className="cart-badge">0</span>
+                    </button>
+
+                    {/* HAMBURGER MENU */}
+                    <button
+                        className={`hamburger ${menuOpen ? 'open' : ''}`}
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </header>
         </>
     );
 }
-
-const styles = {
-    topStrip: {
-        background: "#0f8a33",
-        color: "white",
-        textAlign: "center",
-        padding: "8px",
-        fontWeight: "bold",
-    },
-    header: {
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "15px 5%",
-        background: "white",
-        alignItems: "center",
-        boxShadow: "0 2px 8px rgba(0,0,0,.08)"
-    },
-    nav: { display: "flex", gap: "25px" },
-    link: {
-        textDecoration: "none",
-        color: "#333",
-        fontWeight: "600"
-    }
-};
